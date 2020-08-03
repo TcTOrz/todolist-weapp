@@ -149,6 +149,27 @@
 .filters label view {
 	display: inline;
 }
-.weui-flex__item {
+/* .weui-flex__item {
   width: 100px;
+} */
+
+.mini-btn {
+  margin-right: 10rpx;
+  width:95%; 
+  color: #222; 
+  font-weight: 500; 
+  /* border: 1rpx solid #222; */
+}
+
+.todo-list-layout {
+  padding-left: 20rpx;
+}
+
+.todo-list-text {
+  font-weight: 200;
+  font-size: 30rpx;
+}
+
+.btn_checked {
+  text-decoration: underline;
 }

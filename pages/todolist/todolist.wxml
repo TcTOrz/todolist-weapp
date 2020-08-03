@@ -18,9 +18,9 @@
 
       <checkbox-group bindchange="checkboxContentChange" class="todo-list">
         <label class="" wx:for="{{items}}" wx:key="value">
-          <view class="">
+          <view class="todo-list-layout">
             <checkbox value="{{item.value}}" checked="{{item.checked}}"/>
-            <text>{{item.name}}</text>
+            <text class="todo-list-text">{{item.name}}</text>
           </view>
           <!-- <view class="weui-cell__bd">{{item.name}}</view> -->
         </label>
@@ -43,14 +43,18 @@
       </view>
     </view> -->
     <view class="footer">
-      <view class="page__bd page__bd_spacing">
+    <!-- <view id="tapTest" data-hi="Weixin" bindtap="tapRadio"> Click me! </view> -->
+      <view class="">
         <view class="weui-flex" style="flex-flow: row wrap;">
           <view class="weui-flex__item"><view class="placeholder">1 item left</view></view>
           <view class="weui-flex__item"><view class="placeholder">Clear Completed</view></view>
         </view>
         <view class="weui-flex" style="flex-flow: row wrap;">
-          <view class="weui-flex__item" wx:for="{{ratios}}" wx:key="value">
-            <button type="primary" size="mini">{{item.value}}</button>
+          <!-- <view class="weui-flex__item" wx:for="{{ratios}}" wx:key="value">
+            <button class="mini-btn"  type="default" plain="true" size="mini">{{item.value}}</button>
+          </view> -->
+          <view class="weui-flex__item" wx:for="{{ratios}}" wx:key="value" style="z-index:2;">
+            <view id="{{item.value}}" class="{{item.checked?'btn_checked': ''}}" data-radio="{{item.value}}" bindtap="tapRadio" >{{item.value}}</view>
           </view>
         </view>
       </view>

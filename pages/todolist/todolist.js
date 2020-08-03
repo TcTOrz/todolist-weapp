@@ -9,17 +9,17 @@ Page({
       checked: false
     },
     items: [
-      { value: 'USA', name: '美国' },
+      { value: 'USA', name: '美国如果字符比较长会出现什么情况，这里有测试结果', checked: false },
       { value: 'CHN', name: '中国', checked: true },
-      { value: 'BRA', name: '巴西' }
+      { value: 'BRA', name: '巴西', checked: false  }
     ],
     ratios: [
       { value: 'all', name: 'All' , checked: true},
       { value: 'active', name: 'Active', checked: false },
       { value: 'complete', name: 'Complete', checked: false },
-      { value: 'complete', name: 'Complete', checked: false },
-      { value: 'complete', name: 'Complete', checked: false },
-      { value: 'complete', name: 'Complete', checked: false }
+      // { value: 'complete', name: 'Complete', checked: false },
+      // { value: 'complete', name: 'Complete', checked: false },
+      // { value: 'complete', name: 'Complete', checked: false }
     ]
   },
 
@@ -28,6 +28,25 @@ Page({
     item.checked = item.checked?false:true
     this.setData({
       item
+    })
+  },
+
+  tapRadio: function(event) {
+    let ratio = event.target.dataset.radio
+    let ratios = this.data.ratios
+    let arr = []
+    for( let i=0; i<ratios.length; i++ ) {
+      if( ratios[i].value === ratio ) {
+        ratios[i].checked = true
+      } else {
+        ratios[i].checked = false
+      }
+      arr.push(ratios[i]);
+    }
+    // console.log(ratio)
+    // console.log(arr)
+    this.setData({
+      ratios: arr
     })
   },
 
