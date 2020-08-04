@@ -8,51 +8,31 @@
         focus
         autocomplete="off" 
         placeholder-class="placeholder-class"
-        placeholder="What needs to be done?"/>
+        placeholder="What needs to be done?"
+        value="{{insertText}}"
+        bindconfirm="saveTodo"/>
     </view>
     <view class="main">
       <checkbox-group bindchange="checkboxChange">
         <checkbox id="toggle-all" class="toggle-all" value="" checked="{{item.checked}}"/>
         <label for="toggle-all" class="{{item.checked?'is_checked':''}}"></label>
       </checkbox-group>
-
       <checkbox-group bindchange="checkboxContentChange" class="todo-list">
         <label class="" wx:for="{{items}}" wx:key="value">
           <view class="todo-list-layout">
             <checkbox value="{{item.value}}" checked="{{item.checked}}"/>
             <text class="todo-list-text">{{item.name}}</text>
           </view>
-          <!-- <view class="weui-cell__bd">{{item.name}}</view> -->
         </label>
       </checkbox-group>
     </view>
-    <!-- <view class="footer" style="flex-direction:row;">
-      <view class="footer-text">
-        <text class="todo-count">1 item left</text>
-        <text class="todo-clear">clear</text>
-      </view>
-      <view class="footer-btn">
-        <radio-group bindchange="radioChange" class="filters">
-          <label class="" wx:for="{{ratios}}" wx:key="value">
-            <view class="">
-              <radio value="{{item.value}}" checked="{{item.checked}}"/>
-            </view>
-            <view class="">{{item.name}}</view>
-          </label>
-        </radio-group>
-      </view>
-    </view> -->
     <view class="footer">
-    <!-- <view id="tapTest" data-hi="Weixin" bindtap="tapRadio"> Click me! </view> -->
       <view class="">
         <view class="weui-flex" style="flex-flow: row wrap;">
-          <view class="weui-flex__item"><view class="placeholder">1 item left</view></view>
-          <view class="weui-flex__item"><view class="placeholder">Clear Completed</view></view>
+          <view class="weui-flex__item"><view class="placeholder" style="float:left;">{{leftNum}} {{leftNum>1?'items':'item'}} left</view></view>
+          <view class="weui-flex__item" style="z-index:2;"><view class="placeholder todo-clear" bindtap="tapRmComplete">Clear completed</view></view>
         </view>
-        <view class="weui-flex" style="flex-flow: row wrap;">
-          <!-- <view class="weui-flex__item" wx:for="{{ratios}}" wx:key="value">
-            <button class="mini-btn"  type="default" plain="true" size="mini">{{item.value}}</button>
-          </view> -->
+        <view class="weui-flex" style="flex-flow: row wrap; margin-top: 22rpx;">
           <view class="weui-flex__item" wx:for="{{ratios}}" wx:key="value" style="z-index:2;">
             <view id="{{item.value}}" class="{{item.checked?'btn_checked': ''}}" data-radio="{{item.value}}" bindtap="tapRadio" >{{item.value}}</view>
           </view>

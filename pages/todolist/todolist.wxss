@@ -77,6 +77,8 @@
   margin: 0;
 	padding: 0;
 	list-style: none;
+	max-height: 300rpx;
+	overflow: scroll;
 }
 
 .todo-list label {
@@ -162,14 +164,23 @@
 }
 
 .todo-list-layout {
-  padding-left: 20rpx;
+  padding: 20rpx;
+	border-bottom: 1rpx solid #e7e7e7;
 }
 
 .todo-list-text {
   font-weight: 200;
-  font-size: 30rpx;
+	font-size: 30rpx;
+	padding-left: 20rpx;
 }
 
 .btn_checked {
-  text-decoration: underline;
+	/* text-decoration: underline; */
+	border-radius: 10rpx;
+	border: 1rpx solid #e7e7e7;
+}
+
+.todo-clear {
+	float:right; 
+	text-decoration: underline;
 }
