@@ -19,18 +19,24 @@
       </checkbox-group>
       <checkbox-group bindchange="checkboxContentChange" class="todo-list">
         <label class="" wx:for="{{items}}" wx:key="value">
+
           <view class="todo-list-layout">
-            <checkbox value="{{item.value}}" checked="{{item.checked}}"/>
-            <text class="todo-list-text">{{item.name}}</text>
+            <mp-slideview buttons="{{[{type: 'warn', text: '删除', data: item.value}]}}" bindbuttontap="slideBtnTap" extClass="slide-btn-class">
+              <mp-cell value="" footer="">
+                <checkbox value="{{item.value}}" checked="{{item.checked}}"/>
+                <text class="todo-list-text">{{item.name}}</text>
+              </mp-cell>
+            </mp-slideview>
           </view>
+
         </label>
       </checkbox-group>
     </view>
     <view class="footer">
       <view class="">
         <view class="weui-flex" style="flex-flow: row wrap;">
-          <view class="weui-flex__item"><view class="placeholder" style="float:left;">{{leftNum}} {{leftNum>1?'items':'item'}} left</view></view>
-          <view class="weui-flex__item" style="z-index:2;"><view class="placeholder todo-clear" bindtap="tapRmComplete">Clear completed</view></view>
+          <view class="weui-flex__item"><view class="placeholder" style="float:left;">未完成：{{leftNum}}</view></view> <!-- {{leftNum>1?'items':'item'}} left-->
+          <view class="weui-flex__item" style="z-index:2;"><view class="placeholder todo-clear" bindtap="tapRmComplete">清除已完成</view></view>
         </view>
         <view class="weui-flex" style="flex-flow: row wrap; margin-top: 22rpx;">
           <view class="weui-flex__item" wx:for="{{ratios}}" wx:key="value" style="z-index:2;">
@@ -40,4 +46,7 @@
       </view>
     </view>
   </view>
+  <mp-dialog title="提示" show="{{dialogShowClear}}" bindbuttontap="tapDialogClearBtn" buttons="{{clearBtn}}">
+    <view>清除已完成清单？</view>
+  </mp-dialog>
 </view>

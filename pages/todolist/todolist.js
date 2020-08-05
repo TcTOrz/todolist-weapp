@@ -13,11 +13,17 @@ Page({
     items: [],
     storageItems: [],
     ratios: [
-      { value: 'all', name: 'All' , checked: true},
-      { value: 'active', name: 'Active', checked: false },
-      { value: 'complete', name: 'Complete', checked: false },
+      { value: '所有', name: 'All' , checked: true},
+      { value: '进行中', name: 'Active', checked: false },
+      { value: '已完成', name: 'Complete', checked: false },
     ],
-    leftNum: 0//()=>{this.calcLeftNum()}
+    // slideBtns: [{
+    //   type: 'warn',
+    //   text: '删除'
+    // }],
+    leftNum: 0,//()=>{this.calcLeftNum()}
+    dialogShowClear: false,
+    clearBtn: [{text: '取消'}, {text: '确定'}]
   },
 
   /**
@@ -97,19 +103,59 @@ Page({
     }
   },
 
-  tapRmComplete: function(event) {
-    let data = this.data.storageItems
-    let filter = data.filter((val, index)=> {
-      return !val.checked
-    })
-    wx.setStorage({
-      data: JSON.stringify(filter),
-      key: this.data.STORAGE_KEY
-    })
+  /**
+   * 删除所选项
+   * @param {any} e 
+   */
+  slideBtnTap: function(e) {
+    let {index: btn, data: index} = e.detail
+    let sItems = this.data.storageItems
+    let items = this.data.items
+    if( btn === 0 ) {
+      sItems.splice(sItems.findIndex((ele) => {
+        return ele.value === index
+      }), 1)
+      this.setData({
+        sItems,
+        items: sItems
+      })
+      wx.setStorage({
+        data: JSON.stringify(sItems),
+        key: this.data.STORAGE_KEY
+      })
+      this.refreshList()
+    }
+  },
+
+  /**
+   * 清除所有已完成
+   * @param {any} e 
+   */
+  tapDialogClearBtn: function(e) {
+    if( e.detail.index ) {
+      let data = this.data.storageItems
+      let filter = data.filter((val, index)=> {
+        return !val.checked
+      })
+      wx.setStorage({
+        data: JSON.stringify(filter),
+        key: this.data.STORAGE_KEY
+      })
+      this.setData({
+        storageItems: filter,
+        items: filter
+      })
+    }
     this.setData({
-      storageItems: filter,
-      items: filter
+      dialogShowClear: false
     })
+  },
+  
+  tapRmComplete: function(event) {
+    this.setData({
+      dialogShowClear: true
+    })
+    
   },
   
   /**
