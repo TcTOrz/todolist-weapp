@@ -18,13 +18,16 @@
         <label for="toggle-all" class="{{item.checked?'is_checked':''}}"></label>
       </checkbox-group>
       <checkbox-group bindchange="checkboxContentChange" class="todo-list">
-        <label class="" wx:for="{{items}}" wx:key="value">
+        <view class="none-item" wx:if="{{items.length===0}}">
+          <text>暂无记录，快去添加吧~</text>
+        </view>
+        <label wx:if="{{items.length>=0}}" class="" wx:for="{{items}}" wx:key="value">
 
           <view class="todo-list-layout">
             <mp-slideview buttons="{{[{type: 'warn', text: '删除', data: item.value}]}}" bindbuttontap="slideBtnTap" extClass="slide-btn-class">
               <mp-cell value="" footer="">
-                <checkbox value="{{item.value}}" checked="{{item.checked}}"/>
-                <text class="todo-list-text">{{item.name}}</text>
+                <checkbox color='rgba(175, 47, 47, 0.5)' value="{{item.value}}" checked="{{item.checked}}"/>
+                <text class="todo-list-text {{item.checked ? 'checked-item': ''}}">{{item.name}}</text>
               </mp-cell>
             </mp-slideview>
           </view>

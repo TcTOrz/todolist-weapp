@@ -10,8 +10,14 @@ Page({
     item: {
       checked: false
     },
-    items: [],
-    storageItems: [],
+    items: [
+      // {value: '待办任务1', name: '第一个待办任务样例', checked: false},
+      // {value: '待办任务2', name: '第一个已完成任务样例', checked: true},
+    ],
+    storageItems: [
+      // {value: '待办任务1', name: '第一个待办任务样例', checked: false},
+      // {value: '待办任务2', name: '第一个已完成任务样例', checked: true},
+    ],
     ratios: [
       { value: '所有', name: 'All' , checked: true},
       { value: '进行中', name: 'Active', checked: false },
@@ -82,14 +88,15 @@ Page({
   showList(status) {
     let storageItems = this.data.storageItems
     // let items = this.data.items
-    if( status === 'all' ) {
+    if( status === '所有' ) {
       this.setData({
         items: storageItems
       })
-    }else if( status === 'active' ) {
+    }else if( status === '进行中' ) {
       let filter = storageItems.filter((val, index)=> {
         return !val.checked
       })
+      console.log(filter)
       this.setData({
         items: filter
       })

@@ -81,6 +81,7 @@
 	padding: 0;
 	list-style: none;
 	max-height: 500rpx;
+	min-height: 100rpx;
 	overflow: scroll;
 }
 
@@ -177,6 +178,11 @@
 	padding-left: 20rpx;
 }
 
+.checked-item {
+	color: #7e7e7e;
+	text-decoration:line-through;
+}
+
 .btn_checked {
 	/* text-decoration: underline; */
 	border-radius: 10rpx;
@@ -191,3 +197,15 @@
 /* .slide-btn-class {
 	color: red;
 } */
+
+.none-item {
+	position: relative;
+	text-align: center;
+	top: 25rpx;
+	color: #e6e6e6;
+}
+
+.weui-slideview__btn {
+	font-size: 35rpx;
+	background-color: rgba(175, 47, 47, 0.5) !important;
+}
