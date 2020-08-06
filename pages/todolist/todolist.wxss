@@ -209,3 +209,15 @@
 	font-size: 35rpx;
 	background-color: rgba(175, 47, 47, 0.5) !important;
 }
+
+/* .class-1596682070929 {
+	color: red;
+} */
+
+.todo-list-time {
+	position: absolute;
+	right: 20rpx;
+	top: 5rpx;
+	font-size: 24rpx;
+	color: #bebebe;
+}

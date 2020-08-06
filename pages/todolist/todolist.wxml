@@ -23,11 +23,12 @@
         </view>
         <label wx:if="{{items.length>=0}}" class="" wx:for="{{items}}" wx:key="value">
 
-          <view class="todo-list-layout">
-            <mp-slideview buttons="{{[{type: 'warn', text: '删除', data: item.value}]}}" bindbuttontap="slideBtnTap" extClass="slide-btn-class">
+          <view class="todo-list-layout class-{{item.value}}">
+            <mp-slideview data-id="{{item.value}}" buttons="{{[{type: 'warn', text: '删除', data: item.value}]}}" bindbuttontap="slideBtnTapAnimate" show="{{item.value === currentValue}}" bindshow="slideBtnShow" bindhide="slideBtnHide" extClass="slide-btn-class">
               <mp-cell value="" footer="">
                 <checkbox color='rgba(175, 47, 47, 0.5)' value="{{item.value}}" checked="{{item.checked}}"/>
                 <text class="todo-list-text {{item.checked ? 'checked-item': ''}}">{{item.name}}</text>
+                <text class="todo-list-time">{{item.date}}</text>
               </mp-cell>
             </mp-slideview>
           </view>

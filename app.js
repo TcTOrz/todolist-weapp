@@ -1,4 +1,5 @@
 //app.js
+var util = require('./utils/util.js')
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -71,6 +72,8 @@ App({
   onShow() {
     console.clear();
     console.log("切后台");
+    // console.log('11111'+util.formatTime(new Date())+'11111')
+    // console.log('1111111111')
   },
   // onError(e) {
   //   console.clear();
@@ -89,6 +92,7 @@ App({
     console.log("主题变了哦!");
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    formatTime: util.formatTime
   }
 })
